@@ -1,12 +1,12 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <cstddef>
 #include <cstdlib>
 
 int calcMinrun(int size) {
-	//Если массив меншье 64 - деление не требуется
+	//Р•СЃР»Рё РјР°СЃСЃРёРІ РјРµРЅС€СЊРµ 64 - РґРµР»РµРЅРёРµ РЅРµ С‚СЂРµР±СѓРµС‚СЃСЏ
 	if (size < 64) return size;
 
-	//Делим размер исходного массива на 2, пока он не станет меньше 64
+	//Р”РµР»РёРј СЂР°Р·РјРµСЂ РёСЃС…РѕРґРЅРѕРіРѕ РјР°СЃСЃРёРІР° РЅР° 2, РїРѕРєР° РѕРЅ РЅРµ СЃС‚Р°РЅРµС‚ РјРµРЅСЊС€Рµ 64
 	int r = 0;
 	while (size > 64)
 	{
@@ -32,7 +32,7 @@ void insertSort(int* data, int size) {
 		key = data[i];
 		j = i - 1;
 
-		// Перемещаем элементы arr[0..i-1], которые больше key, на одну позицию вперед
+		// РџРµСЂРµРјРµС‰Р°РµРј СЌР»РµРјРµРЅС‚С‹ arr[0..i-1], РєРѕС‚РѕСЂС‹Рµ Р±РѕР»СЊС€Рµ key, РЅР° РѕРґРЅСѓ РїРѕР·РёС†РёСЋ РІРїРµСЂРµРґ
 		while (j >= 0 && data[j] > key) {
 			data[j + 1] = data[j];
 			j = j - 1;
@@ -47,7 +47,7 @@ void merge(int data[], int left, int mid, int right) {
 	int n1 = mid - left + 1;
 	int n2 = right - mid;
 
-	// Временные массивы
+	// Р’СЂРµРјРµРЅРЅС‹Рµ РјР°СЃСЃРёРІС‹
 	int* L = (int*)malloc(n1 * sizeof(int));
 	int* R = (int*)malloc(n2 * sizeof(int));
 
@@ -56,7 +56,7 @@ void merge(int data[], int left, int mid, int right) {
 	for (int j = 0; j < n2; j++)
 		R[j] = data[mid + 1 + j];
 
-	// Объеденяем временные массивы
+	// РћР±СЉРµРґРµРЅСЏРµРј РІСЂРµРјРµРЅРЅС‹Рµ РјР°СЃСЃРёРІС‹
 	int i = 0, j = 0, k = left;
 	while (i < n1 && j < n2) {
 		if (L[i] <= R[j]) {
@@ -70,14 +70,14 @@ void merge(int data[], int left, int mid, int right) {
 		k++;
 	}
 
-	// Копируем оставшиеся элементы L[]
+	// РљРѕРїРёСЂСѓРµРј РѕСЃС‚Р°РІС€РёРµСЃСЏ СЌР»РµРјРµРЅС‚С‹ L[]
 	while (i < n1) {
 		data[k] = L[i];
 		i++;
 		k++;
 	}
 
-	// Копируем оставшиеся элементы  R[]
+	// РљРѕРїРёСЂСѓРµРј РѕСЃС‚Р°РІС€РёРµСЃСЏ СЌР»РµРјРµРЅС‚С‹  R[]
 	while (j < n2) {
 		data[k] = R[j];
 		j++;
@@ -90,13 +90,13 @@ void merge(int data[], int left, int mid, int right) {
 
 void timeSort(int* data, int size, int minrun) {
 
-	//сортировка подмассивов вставкой 
+	//СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕРґРјР°СЃСЃРёРІРѕРІ РІСЃС‚Р°РІРєРѕР№ 
 	for (int i = 0; i < size; i += minrun) {
-		std::cout << "Сортируем подмассив с позиции: " << i << " длинной:" << std::min<int>(minrun, size - i) << std::endl;
+		std::cout << "РЎРѕСЂС‚РёСЂСѓРµРј РїРѕРґРјР°СЃСЃРёРІ СЃ РїРѕР·РёС†РёРё: " << i << " РґР»РёРЅРЅРѕР№:" << std::min<int>(minrun, size - i) << std::endl;
 		insertSort(&data[i], std::min(minrun, size - i));
 	}
 
-	//Сортировка методом объединения
+	//РЎРѕСЂС‚РёСЂРѕРІРєР° РјРµС‚РѕРґРѕРј РѕР±СЉРµРґРёРЅРµРЅРёСЏ
 	for (int n = minrun; n < size; n *= 2) {
 		for (int left = 0; left < size; left += 2 * n) {
 			int mid = left + n - 1;
@@ -113,7 +113,7 @@ int main()
 {
 	setlocale(LC_ALL, "");
 	int size;
-	std::cout << "Введите число элементов" << std::endl << "> ";
+	std::cout << "Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ СЌР»РµРјРµРЅС‚РѕРІ" << std::endl << "> ";
 	std::cin >> size;
 
 
@@ -124,19 +124,19 @@ int main()
 	{
 		data[i] = rand() % 1000;
 	}
-	std::cout << "Начальный массив:" << std::endl;
+	std::cout << "РќР°С‡Р°Р»СЊРЅС‹Р№ РјР°СЃСЃРёРІ:" << std::endl;
 	printArray(data, size);
 
 
 	int minrun = calcMinrun(size);
 	std::cout << "minRUN:" << minrun << std::endl;
 
-	//Сортировка
+	//РЎРѕСЂС‚РёСЂРѕРІРєР°
 	timeSort(data, size, minrun);
 
 
 	//timsort(vec, minrun);
-	std::cout << "Отсоритированный массив:" << std::endl;
+	std::cout << "РћС‚СЃРѕСЂРёС‚РёСЂРѕРІР°РЅРЅС‹Р№ РјР°СЃСЃРёРІ:" << std::endl;
 	printArray(data, size);
 
 
