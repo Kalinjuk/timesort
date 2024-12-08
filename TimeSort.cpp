@@ -102,7 +102,7 @@ void timeSort(int* data, int size, int minrun) {
 			int mid = left + n - 1;
 			int right = std::min(left + 2 * n - 1, size - 1);
 
-			// Merge arr[left..mid] and arr[mid+1..right]
+			// Объекдинение data[left..mid] и data[mid+1..right]
 			if (mid < right)
 				merge(data, left, mid, right);
 		}
@@ -134,8 +134,7 @@ int main()
 	//Сортировка
 	timeSort(data, size, minrun);
 
-
-	//timsort(vec, minrun);
+	
 	std::cout << "Отсоритированный массив:" << std::endl;
 	printArray(data, size);
 
